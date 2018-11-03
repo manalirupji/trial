@@ -1,55 +1,3 @@
-# NOJAH
-NOt Just Another Heatmap
-
-This interactive web application: NOt Just Another Heatmap (NOJAH) is developed in R with Shiny to
-
-
-1) Perform genome wide analysis of cancer genomic data sets 
-2) Provide visualization, analysis and download of MMRF CoMMpass Expression, Variant and CNV data with Cluster of Cluster Analysis 
-3) Perform significance of cluster analysis using a robust bootstrap approach. 
-
-The goal of this tool is to provide a one stop shop to analyze Genome Wide data or CoMMpass data or perform genomic analysis on their own data.
-
-This tool can be accessed using http://shinygispa.winship.emory.edu/NOJAH/.
-
-For those interested in heatmap analysis, using the Significane of cluster analysis tab, NOJAH lets you generate a HeatMap with only the minimum knowledge of heatmaps and minimal coding experience. The user may upload their own data or use the provided coMMPass expression or TCGA BRCA RNASeq Expression example data to generate the HeatMap using any distance or clustering method of their choice. Along with the HeatMap, the column and row dendrograms are displayed individually in separate tabs. If you wish to know the samples within each cluster, this information can be downloaded using the cutree download button inside the row/column dendrogram tab. The novelty about this app is that it is highly reproducible and provides minimum information required to reproduce the heatmaps.
-
-For those interested in running NOJAH using Rstudio,
-
-#### INSTALLATION
-Firstly, you should have the most recent version of R or RStudio.
-Next install required packages. Cut and paste what's below in an R session.
-
-``` R
-install.packages(c("shiny", "shinythemes", "plotly", "gplots", "gdata", "RColorBrewer", "ggplot2", "gdata", "plyr", "dendextend", "DT", "gridExtra", "matrixStats", "reshape", "cluster"))
-source("http://bioconductor.org/biocLite.R")
-biocLite("impute")
-biocLite("ConsensusClusterPlus")
-```
-You only need to do this once.
-
-Then, you may run NOJAH any time in an R session as follows.
-``` R
-library(shiny)
-library(shinythemes)
-library(plotly)
-library(RColorBrewer)
-library(gplots)
-library(gdata)
-library(plyr)
-library(DT)
-require(dendextend)
-library(colourpicker)
-library(ConsensusClusterPlus)
-library(cluster) # for silhouette
-library(reshape) # for cast
-library(gridExtra)
-
-runGitHub("NOJAH", "manalirupji")
-```
-
-It may take upto several minutes for the webpage to show in your browser depending on your computer.
-
 #### INPUT DATA REQUIREMENTS
 
 Data should be input as a .txt or .xlsx or .csv file. The first two rows of the data file have information about the patients/specimens and their response/subtype; all remaining rows have gene expression data, one row per gene. In the case of Microarray gene expression data in which there are several probes corresponding to a single gene, a unique identifier would need to be created to separately identify each probe such as, 'Gene 1_p1', 'Gene1_p2' indicating Gene 1 has two probes. The columns represent the different experimental samples. A maximum of up to 10 different sample groups and 6 different gene groups may be used with this tool.
@@ -71,13 +19,3 @@ c) Remaining Columns. These should contain the expression measurements as number
 | YWHAH>33323_r_at  | A      | 8.02    |  8       | 3.19	  | 11.86    |	6.54   | 8.17     |	2       |	0.99     |	2      |	1.17   |
 
 
-##### Terms of Use
-
-This tool was prepared by members of the Winship Biostatistics and Bioinformatics Shared Resource (BBISR) of Emory University. 
-Use of either should properly acknowledge the Winship BBISR in publications, abstracts, presentations, posters, grant proposals, etc. by using the following text	
-
-'Research reported in this publication was supported in part by the Biostatistics and Bioinformatics Shared resource of Winship Cancer Institute of Emory University and NIH/NCI under award number P30CA138292. The content is solely the responsibility of the authors and does not necessarily represent the official views of the National Institutes of Health. 
-
-Authors- Manali Rupji, dual M.S., Bhakti Dwivedi Ph.D. & Jeanne Kowalski Ph.D.
-
-Maintainer- Manali Rupji 'manali(dot)rupji(at)emory(dot)edu'
